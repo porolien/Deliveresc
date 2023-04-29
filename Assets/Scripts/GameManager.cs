@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
     public static GameManager Instance => _instance;
-
+    public List<GameObject> ListBarrières = new List<GameObject>();
     public TextMeshProUGUI RemainingTime;
     public TextMeshProUGUI PointsText;
     private int Round;

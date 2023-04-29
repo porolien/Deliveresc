@@ -13,6 +13,7 @@ public class DeliveryMan : MonoBehaviour
     void Start()
     {
         StartCoroutine(DelayBeforeStop());
+        Debug.Log(transform.rotation);
     }
 
     // Update is called once per frame
@@ -23,6 +24,10 @@ public class DeliveryMan : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Death")
+        {
+            Destroy(gameObject);
+        }
         if (other.gameObject.tag == "RelayPoint" )
         {
             if (isNotKind)

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Malus : MonoBehaviour
 {
 
     public string MalusType;
-    public List<string> MalusList = new List<string> { "AugmentTime","ReduceTime" };
+    public List<string> MalusList = new List<string> { "AugmentTime","ReduceTime","FDPSpawn" };
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,11 @@ public class Malus : MonoBehaviour
         }
         if (MalusType == "ReduceTime")
         {
-            
+            ReduceTime();
+        }
+        if (MalusType == "FDPSpawn")
+        {
+          
         }
     }
     IEnumerator DelaiMalus()
