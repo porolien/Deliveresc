@@ -7,6 +7,7 @@ public class Spawn : MonoBehaviour
 {
     [SerializeField] private float maxUp;
     [SerializeField] private float minUp;
+    [SerializeField] private float centerUp;
     [SerializeField] private float maxSides;
     [SerializeField] private float minSides;
     [SerializeField] private float minTimeToSpawn;
@@ -26,18 +27,33 @@ public class Spawn : MonoBehaviour
     void spawnBarrierre()
     {
         int rand = Random.Range(0, BarrieresList.Count);
-        if(rand == 0)
+        Debug.Log(rand);
+        if (BarrieresList[rand].name == "TrashCan")
         {
             Vector3 SpawnPoint;
             SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0,maxUp), 0);
-            GameObject obj = Instantiate(BarrieresList[0], SpawnPoint, Quaternion.identity);
+            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("suce");
+            Vector3 SpawnPoint;
+            int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
+            SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
+            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+            if (randomNumber == 16)
+            {
+                obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
+            }
+            
+            
         }
         
     }
     // Update is called once per frame
     void Update()
     {
-      // spawnBarrierre();
+        spawnBarrierre();
        if (TimeBeforeSpawnChoosen)
         {
             timeBeforeLast += Time.deltaTime;
@@ -57,7 +73,7 @@ public class Spawn : MonoBehaviour
                     {
                         sides = 13f;
                     }
-                    SpawnPoint = new Vector3(sides, Random.Range(minUp, maxUp), 0);
+                    SpawnPoint = new Vector3(sides, Random.Range(minUp, centerUp), 0);
                 }
                 GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(-65f, 0, 0));
                 if (Random.Range(0, 5) == 0)
