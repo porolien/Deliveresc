@@ -15,6 +15,7 @@ public class Spawn : MonoBehaviour
     [SerializeField] private float testHauteur;
 
     private bool TimeBeforeSpawnChoosen;
+    private bool canSpawnBarier = true;
     private float TimeBeforeSpawn;
     private float timeBeforeLast;
     public List<GameObject> BarrieresList = new List<GameObject>();
@@ -53,7 +54,8 @@ public class Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnBarrierre();
+      
+        StartCoroutine(naturalBarrierreSpawn());
        if (TimeBeforeSpawnChoosen)
         {
             timeBeforeLast += Time.deltaTime;
@@ -100,5 +102,16 @@ public class Spawn : MonoBehaviour
             TimeBeforeSpawn = Random.Range(minTimeToSpawn, maxTimeToSpawn);
             TimeBeforeSpawnChoosen = true;
         }
+    }
+    IEnumerator naturalBarrierreSpawn()
+    {
+        if (canSpawnBarier)
+        {
+            canSpawnBarier = false;
+            spawnBarrierre();
+            yield return new WaitForSeconds(10f);
+            canSpawnBarier = true ;
+        }
+        
     }
 }
