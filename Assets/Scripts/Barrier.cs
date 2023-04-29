@@ -11,5 +11,11 @@ public class Barrier : MonoBehaviour
         GameManager.Instance.ListBarrières.Add(gameObject);
         GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0) * Speed;
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Death")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
