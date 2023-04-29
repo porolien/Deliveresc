@@ -6,6 +6,9 @@ public class DeliveryMan : MonoBehaviour
 {
     public float Speed;
     public Vector3 direction;
+    public string BrandName;
+    public bool isNotKind;
+    public bool giveABuff;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +23,44 @@ public class DeliveryMan : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "RelayPoint")
+        if (other.gameObject.tag == "RelayPoint" )
         {
-            GameManager.Instance.Points = 1;
+            if (isNotKind)
+            {
+
+            }
+            if(BrandName == other.GetComponent<RelayPoint>().BrandName)
+            {
+                if (giveABuff)
+                {
+
+                }
+                GameManager.Instance.Points = 1;
+            }
+            else
+            {
+                GameManager.Instance.Points = -1;
+            }
+           
         }
         else if(other.gameObject.tag == "Barrier")
         {
             Destroy(other.gameObject);
             Explosion();
+        }
+        else if (other.gameObject.tag == "Bonus")
+        {
+            other.gameObject.GetComponent<Bonus>().GetBonus();
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            
+        }
+        else if (other.gameObject.tag == "Malus")
+        {
+            other.gameObject.GetComponent<Malus>().GetMalus();
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
         }
     }
 
