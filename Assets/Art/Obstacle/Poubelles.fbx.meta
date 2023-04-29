@@ -3,9 +3,14 @@ guid: 0c1e1aab803e9fd4eb2badc3e38fb4a2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliveresc
+    second: {fileID: 2100000, guid: 6c71d272324e6dd4d8fd07699d03823c, type: 2}
   materials:
-    materialImportMode: 0
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
