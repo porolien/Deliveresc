@@ -16,18 +16,30 @@ public class Spawn : MonoBehaviour
     private bool TimeBeforeSpawnChoosen;
     private float TimeBeforeSpawn;
     private float timeBeforeLast;
-
+    public List<GameObject> BarrieresList = new List<GameObject>();
     public List<GameObject> DeliveryManList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    void spawnBarrierre()
+    {
+        int rand = Random.Range(0, BarrieresList.Count);
+        if(rand == 0)
+        {
+            Vector3 SpawnPoint;
+            SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0,maxUp), 0);
+            GameObject obj = Instantiate(BarrieresList[0], SpawnPoint, Quaternion.identity);
+        }
+        
+    }
     // Update is called once per frame
     void Update()
     {
-       if(TimeBeforeSpawnChoosen)
+       Debug.Log("Gay");
+       spawnBarrierre();
+       if (TimeBeforeSpawnChoosen)
         {
             timeBeforeLast += Time.deltaTime;
             if (timeBeforeLast > TimeBeforeSpawn)

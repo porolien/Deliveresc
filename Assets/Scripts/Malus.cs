@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Malus : MonoBehaviour
@@ -40,7 +41,11 @@ public class Malus : MonoBehaviour
         }
         if (MalusType == "ReduceTime")
         {
-            
+            ReduceTime();
+        }
+        if (MalusType == "FDPSpawn")
+        {
+          
         }
     }
     IEnumerator DelaiMalus()
