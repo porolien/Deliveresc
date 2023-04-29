@@ -27,19 +27,33 @@ public class Spawn : MonoBehaviour
     void spawnBarrierre()
     {
         int rand = Random.Range(0, BarrieresList.Count);
-        if(rand == 0)
+        Debug.Log(rand);
+        if (BarrieresList[rand].name == "TrashCan")
         {
             Vector3 SpawnPoint;
             SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0,maxUp), 0);
-            GameObject obj = Instantiate(BarrieresList[0], SpawnPoint, Quaternion.identity);
+            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("suce");
+            Vector3 SpawnPoint;
+            int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
+            SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
+            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+            if (randomNumber == 16)
+            {
+                obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
+            }
+            
+            
         }
         
     }
     // Update is called once per frame
     void Update()
     {
-       Debug.Log("Gay");
-       spawnBarrierre();
+        spawnBarrierre();
        if (TimeBeforeSpawnChoosen)
         {
             timeBeforeLast += Time.deltaTime;

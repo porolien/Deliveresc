@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    public float Speed;
     // Start is called before the first frame update
     void Start()
     {
