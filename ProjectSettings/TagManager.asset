@@ -7,6 +7,8 @@ TagManager:
   - DeliveryMan
   - RelayPoint
   - Barrier
+  - Bonus
+  - Malus
   layers:
   - Default
   - TransparentFX
