@@ -1,20 +1,14 @@
 fileFormatVersion: 2
-guid: 9651351246473a242bde2a8bb55331c9
+guid: 1edc2340f0de4fa4598c480f44763b5b
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -5317887767387918893
-    second: Floating
+      74: -3522745324045699542
+    second: Spawn Bonus
   - first:
-      74: -9121621101649706817
-    second: Running
-  - first:
-      74: 2667949614841947897
-    second: Walk
-  - first:
-      74: 1474744063889944348
-    second: Armature|mixamo.com|Layer0
+      74: 8255131622190082815
+    second: Rotation Bonus
   externalObjects: {}
   materials:
     materialImportMode: 2
