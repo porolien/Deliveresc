@@ -48,6 +48,17 @@ public class Spawn : MonoBehaviour
                     SpawnPoint = new Vector3(sides, Random.Range(minUp, maxUp), 0);
                 }
                 GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.identity);
+                if(Random.Range(0, 5) == 0)
+                {
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;
+                    }
+                    else
+                    {
+                        newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true; 
+                    }
+                }
                 newDeliveryMan.GetComponent<DeliveryMan>().direction = new Vector3(Random.Range(-8, 8), Random.Range(-3, 0), 0);
                 Vector3 DeliveryManDirection = newDeliveryMan.GetComponent<DeliveryMan>().direction - newDeliveryMan.transform.position;
                 newDeliveryMan.GetComponent<Rigidbody>().velocity = DeliveryManDirection.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
