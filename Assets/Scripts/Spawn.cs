@@ -92,7 +92,7 @@ public class Spawn : MonoBehaviour
                 newDeliveryMan.GetComponent<Rigidbody>().velocity = DeliveryManDirection.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
                 /*Vector3 adjusted = DeliveryManDirection;
                 adjusted.x = 0;*/
-                newDeliveryMan.transform.up = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;// = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;
+                newDeliveryMan.transform.right = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;// = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;
 
 
             }

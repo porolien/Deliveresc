@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae1f7fcceac175419c1d0ea4657c07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "ListBarri\xE8res": []
   RemainingTime: {fileID: 1991542314}
   PointsText: {fileID: 1197579680}
   brandName: []
@@ -938,6 +939,7 @@ MonoBehaviour:
   minTimeToSpawn: 2
   maxTimeToSpawn: 3
   testHauteur: -6
+  BarrieresList: []
   DeliveryManList:
   - {fileID: 6913270243833383230, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
 --- !u!1001 &5994774309612360589
@@ -989,39 +991,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.06494806
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1702236
+      value: -0.11549765
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8433394
+      value: 0.32846212
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8433914
+      value: 0.015257968
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.53729963
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9998836
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 178.252
       objectReference: {fileID: 0}
     - target: {fileID: 6105489130262090628, guid: 803c78bbf088dff4cac16d371e02c1bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
