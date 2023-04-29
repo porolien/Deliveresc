@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeliveryMan
   - RelayPoint
+  - Barrier
   layers:
   - Default
   - TransparentFX

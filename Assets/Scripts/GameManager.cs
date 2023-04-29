@@ -19,13 +19,16 @@ public class GameManager : MonoBehaviour
             }
     }
     private float time;
-    public float Time
+    public float times
     {
         get { return time; }
         set { time = value + time;
             RemainingTime.text = "" + time;
             }
     }
+
+
+    private float timeBeforeLast;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -42,12 +45,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        times = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timeBeforeLast += Time.deltaTime;
+        if (timeBeforeLast > 1)
+        {
+            timeBeforeLast = 0;
+            times = - 1;
+        }
     }
 }

@@ -22,5 +22,15 @@ public class DeliveryMan : MonoBehaviour
         {
             GameManager.Instance.Points = 1;
         }
+        else if(other.gameObject.tag == "Barrier")
+        {
+            Destroy(other.gameObject);
+            Explosion();
+        }
+    }
+
+    private void Explosion()
+    {
+        Destroy(gameObject);
     }
 }
