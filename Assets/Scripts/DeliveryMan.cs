@@ -13,6 +13,7 @@ public class DeliveryMan : MonoBehaviour
     void Start()
     {
         StartCoroutine(DelayBeforeStop());
+        Debug.Log(transform.rotation);
     }
 
     // Update is called once per frame

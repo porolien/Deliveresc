@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Spawn : MonoBehaviour
 {
@@ -47,8 +48,8 @@ public class Spawn : MonoBehaviour
                     }
                     SpawnPoint = new Vector3(sides, Random.Range(minUp, maxUp), 0);
                 }
-                GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.identity);
-                if(Random.Range(0, 5) == 0)
+                GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(-65f, 0, 0));
+                if (Random.Range(0, 5) == 0)
                 {
                     if (Random.Range(0, 2) == 0)
                     {
@@ -62,7 +63,11 @@ public class Spawn : MonoBehaviour
                 newDeliveryMan.GetComponent<DeliveryMan>().direction = new Vector3(Random.Range(-8, 8), Random.Range(-3, 0), 0);
                 Vector3 DeliveryManDirection = newDeliveryMan.GetComponent<DeliveryMan>().direction - newDeliveryMan.transform.position;
                 newDeliveryMan.GetComponent<Rigidbody>().velocity = DeliveryManDirection.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
-               // newDeliveryMan.transform.right = (new Vector3(Random.Range(-8, 8), Random.Range(-3, 0), 0) - newDeliveryMan.transform.position).normalized;
+                /*Vector3 adjusted = DeliveryManDirection;
+                adjusted.x = 0;*/
+                newDeliveryMan.transform.up = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;// = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;
+
+
             }
         }
         else
