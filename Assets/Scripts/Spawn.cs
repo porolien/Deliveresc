@@ -7,6 +7,7 @@ public class Spawn : MonoBehaviour
 {
     [SerializeField] private float maxUp;
     [SerializeField] private float minUp;
+    [SerializeField] private float centerUp;
     [SerializeField] private float maxSides;
     [SerializeField] private float minSides;
     [SerializeField] private float minTimeToSpawn;
@@ -58,7 +59,7 @@ public class Spawn : MonoBehaviour
                     {
                         sides = 13f;
                     }
-                    SpawnPoint = new Vector3(sides, Random.Range(minUp, maxUp), 0);
+                    SpawnPoint = new Vector3(sides, Random.Range(minUp, centerUp), 0);
                 }
                 GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(-65f, 0, 0));
                 if (Random.Range(0, 5) == 0)
