@@ -766,6 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118921596}
   - component: {fileID: 2118921595}
+  - component: {fileID: 2118921597}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -802,6 +803,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118921597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118921594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a283cd7f9ddf2e8488e678a115b56925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxUp: 0
+  minUp: -6
+  maxSides: -15
+  minSides: 15
+  minTimeToSpawn: 2
+  maxTimeToSpawn: 3
+  testHauteur: -6
+  DeliveryManList:
+  - {fileID: 7286558413797944662, guid: 70b9a047a3f1dc44d9d5b3de5d708c11, type: 3}
 --- !u!1001 &1586624890210482789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -970,6 +992,10 @@ PrefabInstance:
     - target: {fileID: 7286558413797944662, guid: 70b9a047a3f1dc44d9d5b3de5d708c11, type: 3}
       propertyPath: m_Name
       value: Livreur
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286558413797944662, guid: 70b9a047a3f1dc44d9d5b3de5d708c11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70b9a047a3f1dc44d9d5b3de5d708c11, type: 3}

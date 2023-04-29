@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class DeliveryMan : MonoBehaviour
 {
+    public float Speed;
+    public Vector3 direction;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(DelayBeforeStop());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,5 +48,10 @@ public class DeliveryMan : MonoBehaviour
     private void Explosion()
     {
         Destroy(gameObject);
+    }
+    IEnumerator DelayBeforeStop()
+    {
+        yield return new WaitForSeconds(3f);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
     }
 }
