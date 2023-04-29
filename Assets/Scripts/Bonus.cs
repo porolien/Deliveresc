@@ -7,7 +7,7 @@ using System;
 public class Bonus : MonoBehaviour
 {
     public string BonusType;
-    public List<string> BonusList = new List<string> { "ReduceTime", "GainReduceTime","DoublePoints","RemoveObstacle" };
+    public List<string> BonusList = new List<string> { "ReduceTime", "GainReduceTime", "DoublePoints", "RemoveObstacle" };
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +38,15 @@ public class Bonus : MonoBehaviour
         GameManager.Instance.Points *=2;
         Destroy(gameObject);
     }
-
+    public void RemoveBarrire()
+    {
+        for(int i = 0; i < GameManager.Instance.ListBarrières.Count; i++)
+        {
+            Destroy(GameManager.Instance.ListBarrières[i]);
+            GameManager.Instance.ListBarrières.Remove(GameManager.Instance.ListBarrières[i]);
+        }
+        
+    }
     public void GetBonus()
     {
         if(BonusType == "ReduceTime")
@@ -52,6 +60,10 @@ public class Bonus : MonoBehaviour
         if (BonusType == "DoublePoints")
         {
             DoublesPoints();
+        }
+        if (BonusType == "RemoveObstacle")
+        {
+            RemoveBarrire();
         }
     }
     IEnumerator DelaiBonus()

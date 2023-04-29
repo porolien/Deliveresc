@@ -6,7 +6,7 @@ public class Malus : MonoBehaviour
 {
 
     public string MalusType;
-    public List<string> MalusList = new List<string> { "AugmentTime","ReduceTime" };
+    public List<string> MalusList = new List<string> { "AugmentTime","ReduceTime","FDPSpawn" };
     // Start is called before the first frame update
     void Start()
     {
