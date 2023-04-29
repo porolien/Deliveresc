@@ -6,9 +6,14 @@ ModelImporter:
   - first:
       74: -3403223495440316006
     second: Walk.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deliveresc
+    second: {fileID: 2100000, guid: 6c71d272324e6dd4d8fd07699d03823c, type: 2}
   materials:
-    materialImportMode: 0
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
