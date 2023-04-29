@@ -27,6 +27,20 @@ public class DeliveryMan : MonoBehaviour
             Destroy(other.gameObject);
             Explosion();
         }
+        else if (other.gameObject.tag == "Bonus")
+        {
+            other.gameObject.GetComponent<Bonus>().GetBonus();
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            
+        }
+        else if (other.gameObject.tag == "Malus")
+        {
+            other.gameObject.GetComponent<Malus>().GetMalus();
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+        }
     }
 
     private void Explosion()

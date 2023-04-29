@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             RemainingTime.text = "" + time;
             }
     }
-
+    public float timeMultiplator = 1;
 
     private float timeBeforeLast;
     private void Awake()
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timeBeforeLast += Time.deltaTime;
-        if (timeBeforeLast > 1)
+        if (timeBeforeLast > timeMultiplator)
         {
             timeBeforeLast = 0;
             times = - 1;
