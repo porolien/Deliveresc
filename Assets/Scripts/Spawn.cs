@@ -29,9 +29,10 @@ public class Spawn : MonoBehaviour
     void spawnEntity()
     {
         Vector3 SpawnPoint;
-        SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
+        
         if (Random.Range(0, 2) == 3)
         {
+            SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
             if (Random.Range(0, 2) == 0)
             {
                 GameObject buff = Instantiate(Bonus, SpawnPoint, Quaternion.identity);
@@ -46,13 +47,13 @@ public class Spawn : MonoBehaviour
             int rand = Random.Range(0, BarrieresList.Count);
             if (BarrieresList[rand].name == "TrashCan")
             {
-                
+                SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
                 GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
             }
             else
             {
                 int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
-                SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
+                SpawnPoint = new Vector3(randomNumber, Random.Range(2, maxUp), 0);
                 GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
                 if (randomNumber == 16)
                 {
