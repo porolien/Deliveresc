@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeliveryMan : MonoBehaviour
 {
     public float Speed;
+    public Vector3 LastSpeed;
     public Vector3 direction;
     public string BrandName;
     public bool isNotKind;
@@ -31,13 +32,15 @@ public class DeliveryMan : MonoBehaviour
         {
             if (isNotKind)
             {
-
+                GameManager.Instance.Points = -5;
+                GameManager.Instance.times = -10;
             }
-            if(BrandName == other.GetComponent<RelayPoint>().BrandName)
+            else if(BrandName == other.GetComponent<RelayPoint>().BrandName)
             {
                 if (giveABuff)
                 {
-
+                    GameManager.Instance.Points = 5;
+                    GameManager.Instance.times = 10;
                 }
                 GameManager.Instance.Points = 1;
                 GameManager.Instance.times = 2;
@@ -46,6 +49,7 @@ public class DeliveryMan : MonoBehaviour
             {
                 GameManager.Instance.Points = -1;
             }
+            GameManager.Instance.ListDeliveryMan.Remove(gameObject);
             Destroy(gameObject);
         }
         else if(other.gameObject.tag == "Barrier")
@@ -54,6 +58,7 @@ public class DeliveryMan : MonoBehaviour
             {
                 GameManager.Instance.times = -5;
             }
+            GameManager.Instance.ListBarrières.Remove(other.gameObject);
             Destroy(other.gameObject);
             Explosion();
         }
@@ -75,6 +80,7 @@ public class DeliveryMan : MonoBehaviour
 
     private void Explosion()
     {
+        GameManager.Instance.ListDeliveryMan.Remove(gameObject);
         Destroy(gameObject);
     }
   /*  IEnumerator DelayBeforeStop()

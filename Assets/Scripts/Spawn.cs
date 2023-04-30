@@ -26,12 +26,12 @@ public class Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     void spawnEntity()
     {
-        Vector3 SpawnPoint;
-        
+        Vector3 SpawnPoint = Vector3.zero;
+
         if (Random.Range(0, 2) == 0)
         {
             SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
@@ -46,40 +46,15 @@ public class Spawn : MonoBehaviour
         }
         else
         {
-            int rand = Random.Range(0, BarrieresList.Count);
-            if (BarrieresList[rand].name == "TrashCan")
-            {
-                SpawnPoint = new Vector3(Random.Range(minSides, maxSides), 0.67f, 0);
-                GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
-                obj.transform.rotation = Quaternion.Euler(270, 0, 0);
-            }
-            else
-            {
-                int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
-                SpawnPoint = new Vector3(randomNumber, 0,  Random.Range(2, maxUp));
-                GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
-               
-                    if (randomNumber == 16)
-                {
-                    obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
-                    obj.transform.rotation = Quaternion.Euler(0, -180, 0);
-                }
-               /* if (obj.name == "Women with kid")
-                {
-                    obj.transform.Rotate(0, 90, 0);
-                }*/
-
-
-            }
+            spawnBarrier(SpawnPoint);
         }
-        
     }
     // Update is called once per frame
     void Update()
     {
-      
+
         StartCoroutine(naturalEntitySpawn());
-       if (TimeBeforeSpawnChoosen)
+        if (TimeBeforeSpawnChoosen)
         {
             timeBeforeLast += Time.deltaTime;
             if (timeBeforeLast > TimeBeforeSpawn)
@@ -87,16 +62,17 @@ public class Spawn : MonoBehaviour
                 timeBeforeLast = 0;
                 TimeBeforeSpawnChoosen = false;
                 Vector3 SpawnPoint;
-                    float sides = -13f;
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        sides = 13f;
+                float sides = -13f;
+                if (Random.Range(0, 2) == 0)
+                {
+                    sides = 13f;
 
-                    }
-                    SpawnPoint = new Vector3(sides, 0.25f, Random.Range(-3, -7));
-                
+                }
+                SpawnPoint = new Vector3(sides, 0.25f, Random.Range(-3, -7));
+
                 GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(90f, 0, 90f));
-                Vector3 direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0) ;
+                GameManager.Instance.ListDeliveryMan.Add(newDeliveryMan);
+                Vector3 direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0);
                 //newDeliveryMan.transform.up = direction.normalized;
                 if (SpawnPoint.x < 0)
                 {
@@ -107,7 +83,7 @@ public class Spawn : MonoBehaviour
                 {
                     newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
                 }
-               
+
                 if (Random.Range(0, 5) == 0)
                 {
                     if (Random.Range(0, 2) == 0)
@@ -116,11 +92,9 @@ public class Spawn : MonoBehaviour
                     }
                     else
                     {
-                        newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true; 
+                        newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true;
                     }
                 }
-
-
             }
         }
         else
@@ -129,15 +103,58 @@ public class Spawn : MonoBehaviour
             TimeBeforeSpawnChoosen = true;
         }
     }
+    public void spawnBarrier(Vector3 SpawnPoint)
+    {
+        int rand = Random.Range(0, BarrieresList.Count);
+        if (BarrieresList[rand].name == "TrashCan")
+        {
+            SpawnPoint = new Vector3(Random.Range(minSides, maxSides), 0.67f, 0);
+            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+            obj.transform.rotation = Quaternion.Euler(270, 0, 0);
+            StartCoroutine(TrashExplosion(obj));
+        }
+        else
+        {
+            int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
+            SpawnPoint = new Vector3(randomNumber, 0, Random.Range(2, maxUp));
+            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+            Debug.Log(obj.name);
+            if (randomNumber == 16)
+            {
+                obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
+                obj.transform.rotation = Quaternion.Euler(0, -180, 0);
+            }
+            if (obj.name == "Women with kid(Clone)")
+            {
+                if (randomNumber == 16)
+                {
+                    obj.transform.rotation = Quaternion.Euler(0, -90, 0);
+                }
+                else
+                {
+                    obj.transform.rotation = Quaternion.Euler(0, 90, 0);
+                }
+            }
+        }
+    }
     IEnumerator naturalEntitySpawn()
     {
         if (canSpawnBarier)
         {
             canSpawnBarier = false;
             spawnEntity();
-            yield return new WaitForSeconds(10f);
-            canSpawnBarier = true ;
+            yield return new WaitForSeconds(1f);
+            canSpawnBarier = true;
         }
-        
+
+    }
+    IEnumerator TrashExplosion(GameObject Trash)
+    {
+        yield return new WaitForSeconds(20f);
+        if(Trash != null)
+        {
+            GameManager.Instance.ListBarrières.Remove(Trash);
+            Destroy(Trash);
+        }
     }
 }

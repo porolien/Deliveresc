@@ -5,6 +5,7 @@ using UnityEngine;
 public class Barrier : MonoBehaviour
 {
     public float Speed;
+    public Vector3 LastSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,7 @@ public class Barrier : MonoBehaviour
     {
         if(other.gameObject.tag == "Death")
         {
+            GameManager.Instance.ListBarrières.Remove(gameObject);
             Destroy(gameObject);
         }
     }
