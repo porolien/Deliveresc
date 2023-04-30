@@ -7,9 +7,8 @@ public class Malus : MonoBehaviour
 {
 
     public string MalusType;
-    public List<string> MalusList = new List<string> { "AugmentTime", "Point/2", "FDPSpawn" };
+    public List<string> MalusList = new List<string> { "AugmentTime", "Point/2", "BarrierSpawn" };
 
-    [SerializeField] private List<MeshFilter> MeshMalus = new List<MeshFilter>();
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +44,7 @@ public class Malus : MonoBehaviour
         {
             ReduceTime();
         }
-        if (MalusType == "FDPSpawn")
+        if (MalusType == "BarrierSpawn")
         {
           
         }

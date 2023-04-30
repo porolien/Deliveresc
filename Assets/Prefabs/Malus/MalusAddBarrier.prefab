@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7139378233375819385}
   - component: {fileID: 7139378233375819390}
   - component: {fileID: 7139378233375819391}
-  - component: {fileID: 3549833706696535117}
+  - component: {fileID: -8956677791585879327}
   m_Layer: 0
-  m_Name: Bonus 1
-  m_TagString: Bonus
+  m_Name: MalusAddBarrier
+  m_TagString: Malus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7139378233375819388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.06, y: 1.29, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 20}
+  m_LocalScale: {x: 0.4737, y: 0.2564, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7139378233375819388}
-  m_Mesh: {fileID: 4232100842668788923, guid: a39d33c73e740c94bbe05e2aeec9d1b2, type: 3}
+  m_Mesh: {fileID: 4232100842668788923, guid: ab4186f38f73a15469b900ce7d451464, type: 3}
 --- !u!23 &7139378233375819390
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95,11 +95,11 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.04433378
-  m_Height: 0.17936623
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0.007618535, y: 0.021216547, z: -0.017629577}
---- !u!114 &3549833706696535117
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8956677791585879327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,13 +108,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7139378233375819388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b719f7bc4f5af43b870a866a6906df, type: 3}
+  m_Script: {fileID: 11500000, guid: eb392f8d5a0e9d946b53958179ff5a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BonusType: RemoveObstacle
-  BonusList:
-  - ReduceTime
-  - GainReduceTime
-  - DoublePoints
-  - RemoveObstacle
-  - StopTime
+  MalusType: BarrierSpawn
+  MalusList:
+  - AugmentTime
+  - Point/2
+  - BarrierSpawn
+  MeshMalus: []

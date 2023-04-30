@@ -8,7 +8,6 @@ public class Bonus : MonoBehaviour
 {
     public string BonusType;
     public List<string> BonusList = new List<string> { "ReduceTime", "GainReduceTime", "DoublePoints", "RemoveObstacle", "StopTime"};
-    [SerializeField] private List<Mesh> MeshBonus = new List<Mesh>();
     // Start is called before the first frame update
     void Start()
     {
