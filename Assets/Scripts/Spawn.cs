@@ -16,7 +16,7 @@ public class Spawn : MonoBehaviour
 
     private bool TimeBeforeSpawnChoosen;
     private bool canSpawnBarier = true;
-    private float TimeBeforeSpawn = 200;
+    private float TimeBeforeSpawn;
     private float timeBeforeLast;
     public GameObject Bonus, Malus;
     public List<GameObject> BarrieresList = new List<GameObject>();
@@ -54,7 +54,7 @@ public class Spawn : MonoBehaviour
                 int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
                 SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
                 GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
-                if (randomNumber == -16)
+                if (randomNumber == 16)
                 {
                     obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
                     obj.transform.rotation = Quaternion.Euler(0, -180, 0);
@@ -125,10 +125,9 @@ public class Spawn : MonoBehaviour
     {
         if (canSpawnBarier)
         {
-            Debug.Log("spawn");
             canSpawnBarier = false;
             spawnEntity();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(10f);
             canSpawnBarier = true ;
         }
         
