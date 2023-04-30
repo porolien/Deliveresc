@@ -10,7 +10,7 @@ public class DeliveryMan : MonoBehaviour
     public string BrandName;
     public bool isNotKind;
     public bool giveABuff;
-    
+    public bool hasBeThrowned;
     // Start is called before the first frame update
     void Start()
     {
