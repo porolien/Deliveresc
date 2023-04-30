@@ -93,7 +93,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        times = 1;
+        times = 100;
+        Points = 0;
         float score = PlayerPrefs.GetFloat("Highscore");
     }
 

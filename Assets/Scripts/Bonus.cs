@@ -82,7 +82,7 @@ public class Bonus : MonoBehaviour
                 {
                     AllDeliveryMan.GetComponent<DeliveryMan>().LastSpeed = AllDeliveryMan.GetComponent<Rigidbody>().velocity;
                     AllDeliveryMan.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    AllDeliveryMan.GetComponent<Animator>().enabled = false;
+                    AllDeliveryMan.GetComponent<Animator>().speed = 0;
                 }
                 
             }
