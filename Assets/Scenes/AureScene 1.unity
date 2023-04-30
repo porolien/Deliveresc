@@ -523,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &665440067
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2333,6 +2333,7 @@ MonoBehaviour:
   RemainingTime: {fileID: 1991542314}
   PointsText: {fileID: 1197579680}
   PointX2: 0
+  Combos: 0
   brandName: []
   DeliveryMansToAdd:
   - {fileID: 4051510367475162975, guid: b853c919b9955b44db0bd84424b13a15, type: 3}
@@ -2377,6 +2378,9 @@ MonoBehaviour:
   minTimeToSpawn: 2
   maxTimeToSpawn: 3
   testHauteur: -6
+  TimeBeforeSpawnEntity: 10
+  TimeBeforeSpawnBarrier: 8
+  TimeBeforeSpawnDeliveryMan: 1.5
   Bonus: {fileID: 7139378233375819388, guid: 4cdb545463c347a4a924485a0640893c, type: 3}
   Malus: {fileID: 7139378233375819388, guid: b2516185e4f7f0a4a990085ea7736e21, type: 3}
   BarrieresList:

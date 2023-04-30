@@ -26,6 +26,10 @@ public class DeliveryMan : MonoBehaviour
     {
         if (other.gameObject.tag == "Death")
         {
+            if (!isNotKind)
+            {
+                GameManager.Instance.BreakTheCombos(true);
+            }
             Destroy(gameObject);
         }
         if (other.gameObject.tag == "RelayPoint" )
@@ -34,21 +38,24 @@ public class DeliveryMan : MonoBehaviour
             {
                 GameManager.Instance.Points = -5;
                 GameManager.Instance.times = -10;
+                GameManager.Instance.BreakTheCombos(false);
             }
             else if(BrandName == other.GetComponent<RelayPoint>().BrandName)
             {
                 if (giveABuff)
                 {
                     GameManager.Instance.Points = 5;
-                    GameManager.Instance.times = 10;
                 }
                 GameManager.Instance.Points = 1;
-                GameManager.Instance.times = 2;
+                GameManager.Instance.times = 1;
+                GameManager.Instance.Combos += 1;
+                GameManager.Instance.CombosMultiplicator();
             }
             else
             {
                 GameManager.Instance.Points = -1;
             }
+            GameManager.Instance.BreakTheCombos(false);
             GameManager.Instance.ListDeliveryMan.Remove(gameObject);
             Destroy(gameObject);
         }
@@ -58,12 +65,15 @@ public class DeliveryMan : MonoBehaviour
             {
                 GameManager.Instance.times = -5;
             }
+            GameManager.Instance.BreakTheCombos(false);
             GameManager.Instance.ListBarrières.Remove(other.gameObject);
             Destroy(other.gameObject);
             Explosion();
         }
         else if (other.gameObject.tag == "Bonus")
         {
+            GameManager.Instance.Combos += 1;
+            GameManager.Instance.CombosMultiplicator();
             other.gameObject.GetComponent<Bonus>().GetBonus();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -71,6 +81,7 @@ public class DeliveryMan : MonoBehaviour
         }
         else if (other.gameObject.tag == "Malus")
         {
+            GameManager.Instance.BreakTheCombos(true);
             other.gameObject.GetComponent<Malus>().GetMalus();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
