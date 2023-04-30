@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7139378233375819388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.06, y: 1.29, z: 0}
-  m_LocalScale: {x: 0.4737, y: 0.2564, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,10 +95,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.0357478
+  m_Height: 0.38308978
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.01327734, y: 0.0480016, z: 0}
 --- !u!114 &-8956677791585879327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,4 +116,4 @@ MonoBehaviour:
   - AugmentTime
   - Point/2
   - BarrierSpawn
-  MeshMalus: []
+  spawn: {fileID: 0}

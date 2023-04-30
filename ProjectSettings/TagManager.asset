@@ -9,6 +9,7 @@ TagManager:
   - Barrier
   - Bonus
   - Malus
+  - Death
   layers:
   - Default
   - TransparentFX

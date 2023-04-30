@@ -33,6 +33,12 @@ public class Malus : MonoBehaviour
         GameManager.Instance.times = 7;
         Destroy(gameObject);
     }
+    public void BarrierSpawn()
+    {
+        Vector3 SpawnPoint = Vector3.zero;
+        GameManager.Instance.GetComponent<Spawn>().spawnBarrier(SpawnPoint);
+        Destroy(gameObject);
+    }
 
     public void GetMalus()
     {
@@ -46,7 +52,7 @@ public class Malus : MonoBehaviour
         }
         if (MalusType == "BarrierSpawn")
         {
-          
+            BarrierSpawn();
         }
     }
     IEnumerator DelaiMalus()

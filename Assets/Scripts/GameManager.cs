@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance = null;
     public static GameManager Instance => _instance;
     public List<GameObject> ListBarrières = new List<GameObject>();
+    public List<GameObject> ListDeliveryMan = new List<GameObject>();
     public TextMeshProUGUI RemainingTime;
     public TextMeshProUGUI PointsText;
 
@@ -90,7 +91,15 @@ public class GameManager : MonoBehaviour
         timeBeforeLast += Time.deltaTime;
         if (timeBeforeLast > timeMultiplator)
         {
-            PointX2 = PointX2 - timeMultiplator;
+            if(PointX2 > 0)
+            {
+                PointX2 = PointX2 - timeMultiplator;
+                if (PointX2 < 0)
+                {
+                    PointX2 = 0;
+                }
+
+            }
             timeBeforeLast = 0;
             times = -1;
         }
