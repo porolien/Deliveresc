@@ -45,5 +45,6 @@ public class ThrowAMan : MonoBehaviour
     {
         Vector3 direction = Input.mousePosition - oldMousePosition;
         TheManToThrowAway.GetComponent<Rigidbody>().velocity = new Vector3(direction.x, 0, direction.y).normalized * ThrowSpeed;
+        TheManToThrowAway.GetComponent<Animator>().SetBool("IsThrowned", enabled);
     }
 }
