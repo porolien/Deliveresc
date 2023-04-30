@@ -7,15 +7,15 @@ using System;
 public class Bonus : MonoBehaviour
 {
     public string BonusType;
-    public List<string> BonusList = new List<string> { "ReduceTime", "GainReduceTime", "DoublePoints", "RemoveObstacle" };
+    public List<string> BonusList = new List<string> { "ReduceTime", "GainReduceTime", "DoublePoints", "RemoveObstacle", "StopTime"};
     // Start is called before the first frame update
     void Start()
     {
-        System.Random rnd = new System.Random();
+    /*    System.Random rnd = new System.Random();
         int indexAleatoire = rnd.Next(0, BonusList.Count);
 
         BonusType = BonusList[indexAleatoire];
-
+        GetComponent<MeshFilter>().mesh = MeshBonus[indexAleatoire];*/
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class Bonus : MonoBehaviour
     }
     public void DoublesPoints()
     {
-        GameManager.Instance.Points *=2;
+        GameManager.Instance.PointX2 = 20;
         Destroy(gameObject);
     }
     public void RemoveBarrire()
@@ -46,6 +46,10 @@ public class Bonus : MonoBehaviour
             GameManager.Instance.ListBarrières.Remove(GameManager.Instance.ListBarrières[i]);
         }
         
+    }
+    public void StopTime()
+    {
+
     }
     public void GetBonus()
     {
@@ -64,6 +68,10 @@ public class Bonus : MonoBehaviour
         if (BonusType == "RemoveObstacle")
         {
             RemoveBarrire();
+        }
+        if (BonusType == "StopTime")
+        {
+            StopTime();
         }
     }
     IEnumerator DelaiBonus()

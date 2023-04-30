@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3089792995745650784
+--- !u!1 &7139378233375819388
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2426022891861082842}
-  - component: {fileID: 1586724343324839295}
-  - component: {fileID: 3594393859096279477}
-  - component: {fileID: 2209377082253874898}
-  - component: {fileID: 2957325175886392318}
-  - component: {fileID: 7402943853239834421}
+  - component: {fileID: 7139378233375819384}
+  - component: {fileID: 7139378233375819385}
+  - component: {fileID: 7139378233375819390}
+  - component: {fileID: 7139378233375819391}
+  - component: {fileID: -8956677791585879327}
   m_Layer: 0
-  m_Name: TrashCan
-  m_TagString: Barrier
+  m_Name: MalusAddBarrier
+  m_TagString: Malus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2426022891861082842
+--- !u!4 &7139378233375819384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089792995745650784}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -21.14149, y: 1.6913431, z: 0.56233954}
-  m_LocalScale: {x: 37, y: 37, z: 67}
+  m_GameObject: {fileID: 7139378233375819388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.06, y: 1.29, z: 0}
+  m_LocalScale: {x: 0.4737, y: 0.2564, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
---- !u!33 &1586724343324839295
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7139378233375819385
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089792995745650784}
-  m_Mesh: {fileID: -5495902117074765545, guid: 0c1e1aab803e9fd4eb2badc3e38fb4a2, type: 3}
---- !u!23 &3594393859096279477
+  m_GameObject: {fileID: 7139378233375819388}
+  m_Mesh: {fileID: 4232100842668788923, guid: ab4186f38f73a15469b900ce7d451464, type: 3}
+--- !u!23 &7139378233375819390
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089792995745650784}
+  m_GameObject: {fileID: 7139378233375819388}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,45 +85,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2209377082253874898
-BoxCollider:
+--- !u!136 &7139378233375819391
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089792995745650784}
+  m_GameObject: {fileID: 7139378233375819388}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.085944265, y: 0.055386644, z: 0.031526085}
-  m_Center: {x: 0.0004451962, y: -0.006681503, z: 0.0029138261}
---- !u!114 &2957325175886392318
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8956677791585879327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089792995745650784}
+  m_GameObject: {fileID: 7139378233375819388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3401179d47cfced4993adeee8f43a035, type: 3}
+  m_Script: {fileID: 11500000, guid: eb392f8d5a0e9d946b53958179ff5a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
---- !u!54 &7402943853239834421
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089792995745650784}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  MalusType: BarrierSpawn
+  MalusList:
+  - AugmentTime
+  - Point/2
+  - BarrierSpawn
+  MeshMalus: []

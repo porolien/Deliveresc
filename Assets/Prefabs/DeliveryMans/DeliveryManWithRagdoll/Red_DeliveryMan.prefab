@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 4780178444654692514}
   m_Layer: 0
   m_Name: Red_DeliveryMan
-  m_TagString: Untagged
+  m_TagString: DeliveryMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1123,8 +1123,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9792924, y: 1.9626052, z: 0.1872387}
-  m_Center: {x: 0.043141246, y: 0.4813056, z: 0.40638036}
+  m_Size: {x: 2.071816, y: 1.611041, z: 2.1128685}
+  m_Center: {x: 0.024501085, y: 0.30552346, z: -0.928908}
 --- !u!54 &7828778023652167477
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   direction: {x: 0, y: 0, z: 0}
-  BrandName: 
+  BrandName: Wcdonald
   isNotKind: 0
   giveABuff: 0
 --- !u!95 &4780178444654692514

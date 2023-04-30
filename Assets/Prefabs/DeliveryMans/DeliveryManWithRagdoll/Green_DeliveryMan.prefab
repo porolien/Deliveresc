@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: -4666084376699129063}
   m_Layer: 0
   m_Name: Green_DeliveryMan
-  m_TagString: Untagged
+  m_TagString: DeliveryMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1699,8 +1699,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9792924, y: 1.9626052, z: 0.1872387}
-  m_Center: {x: 0.043141246, y: 0.4813056, z: 0.40638036}
+  m_Size: {x: 2.5510375, y: 1.3596076, z: 1.9969779}
+  m_Center: {x: -0.17098606, y: 0.44821435, z: -0.745665}
 --- !u!54 &6520474460282060390
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1731,7 +1731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   direction: {x: 0, y: 0, z: 0}
-  BrandName: 
+  BrandName: UTerEats
   isNotKind: 0
   giveABuff: 0
 --- !u!95 &-4666084376699129063
