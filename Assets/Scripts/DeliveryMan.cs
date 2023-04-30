@@ -12,8 +12,7 @@ public class DeliveryMan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DelayBeforeStop());
-        Debug.Log(transform.rotation);
+       // StartCoroutine(DelayBeforeStop());
     }
 
     // Update is called once per frame
@@ -50,6 +49,10 @@ public class DeliveryMan : MonoBehaviour
         }
         else if(other.gameObject.tag == "Barrier")
         {
+            if (!isNotKind)
+            {
+                GameManager.Instance.times = -5;
+            }
             Destroy(other.gameObject);
             Explosion();
         }
@@ -73,9 +76,9 @@ public class DeliveryMan : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    IEnumerator DelayBeforeStop()
+  /*  IEnumerator DelayBeforeStop()
     {
         yield return new WaitForSeconds(3f);
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-    }
+    }*/
 }

@@ -18,6 +18,7 @@ public class Spawn : MonoBehaviour
     private bool canSpawnBarier = true;
     private float TimeBeforeSpawn;
     private float timeBeforeLast;
+    public GameObject Bonus, Malus;
     public List<GameObject> BarrieresList = new List<GameObject>();
     public List<GameObject> DeliveryManList = new List<GameObject>();
     // Start is called before the first frame update
@@ -25,29 +26,41 @@ public class Spawn : MonoBehaviour
     {
         
     }
-    void spawnBarrierre()
+    void spawnEntity()
     {
-        int rand = Random.Range(0, BarrieresList.Count);
-        Debug.Log(rand);
-        if (BarrieresList[rand].name == "TrashCan")
+        Vector3 SpawnPoint;
+        SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
+        if (Random.Range(0, 2) == 0)
         {
-            Vector3 SpawnPoint;
-            SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0,maxUp), 0);
-            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+            if (Random.Range(0, 2) == 0)
+            {
+                GameObject buff = Instantiate(Bonus, SpawnPoint, Quaternion.identity);
+            }
+            else
+            {
+                GameObject debuff = Instantiate(Malus, SpawnPoint, Quaternion.identity);
+            }
         }
         else
         {
-            Debug.Log("suce");
-            Vector3 SpawnPoint;
-            int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
-            SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
-            GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
-            if (randomNumber == 16)
+            int rand = Random.Range(0, BarrieresList.Count);
+            if (BarrieresList[rand].name == "TrashCan")
             {
-                obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
+                
+                GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
             }
-            
-            
+            else
+            {
+                int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
+                SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
+                GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+                if (randomNumber == 16)
+                {
+                    obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
+                }
+
+
+            }
         }
         
     }
@@ -55,7 +68,7 @@ public class Spawn : MonoBehaviour
     void Update()
     {
       
-        StartCoroutine(naturalBarrierreSpawn());
+        StartCoroutine(naturalEntitySpawn());
        if (TimeBeforeSpawnChoosen)
         {
             timeBeforeLast += Time.deltaTime;
@@ -64,20 +77,22 @@ public class Spawn : MonoBehaviour
                 timeBeforeLast = 0;
                 TimeBeforeSpawnChoosen = false;
                 Vector3 SpawnPoint;
-                if (Random.Range(0, 2) == 0)
-                {
-                        SpawnPoint = new Vector3(Random.Range(minSides, maxSides), testHauteur, 0);
-                }
-                else
-                {
                     float sides = -13f;
                     if (Random.Range(0, 2) == 0)
                     {
                         sides = 13f;
+
                     }
                     SpawnPoint = new Vector3(sides, Random.Range(minUp, centerUp), 0);
-                }
+                
                 GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(-65f, 0, 0));
+                Vector3 direction = new Vector3(-sides, newDeliveryMan.transform.position.y, newDeliveryMan.transform.position.z) - newDeliveryMan.transform.position;
+                newDeliveryMan.transform.up = direction.normalized;
+                if (SpawnPoint.x > 0)
+                {
+                    newDeliveryMan.GetComponent<DeliveryMan>().Speed = -newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                }
+                newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
                 if (Random.Range(0, 5) == 0)
                 {
                     if (Random.Range(0, 2) == 0)
@@ -89,10 +104,6 @@ public class Spawn : MonoBehaviour
                         newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true; 
                     }
                 }
-                newDeliveryMan.GetComponent<DeliveryMan>().direction = new Vector3(Random.Range(-8, 8), Random.Range(-3, 0), 0);
-                Vector3 DeliveryManDirection = newDeliveryMan.GetComponent<DeliveryMan>().direction - newDeliveryMan.transform.position;
-                newDeliveryMan.GetComponent<Rigidbody>().velocity = DeliveryManDirection.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
-                newDeliveryMan.transform.up = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;// = (DeliveryManDirection - newDeliveryMan.transform.position).normalized;
 
 
             }
@@ -103,12 +114,12 @@ public class Spawn : MonoBehaviour
             TimeBeforeSpawnChoosen = true;
         }
     }
-    IEnumerator naturalBarrierreSpawn()
+    IEnumerator naturalEntitySpawn()
     {
         if (canSpawnBarier)
         {
             canSpawnBarier = false;
-            spawnBarrierre();
+            spawnEntity();
             yield return new WaitForSeconds(10f);
             canSpawnBarier = true ;
         }

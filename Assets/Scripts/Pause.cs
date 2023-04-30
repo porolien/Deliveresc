@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Pause : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,16 +18,16 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-           
-            if (isPaused)
+            if (pauseMenuUI != null)
             {
-                Resume();
-               
-            }
-            else
-            {
-                OpenMenu();
-                
+                if (isPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    OpenMenu();
+                }
             }
         }
     }
@@ -43,8 +44,15 @@ public class Pause : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
-    void Quit()
+    public void ChangeScene(string scene)
     {
-        
+        if (scene == "quit")
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene(scene);
+        }
     }
 }

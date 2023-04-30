@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
     public float timeMultiplator = 1;
 
     private float timeBeforeLast;
+
+    private float Highscore;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         times = 100;
+        float score = PlayerPrefs.GetFloat("Highscore");
     }
 
     // Update is called once per frame
@@ -84,6 +88,11 @@ public class GameManager : MonoBehaviour
     void Defeat()
     {
         Debug.Log("defeat");
+        if(PlayerPrefs.GetFloat("Highscore") < time)
+        {
+            PlayerPrefs.SetFloat("Highscore", time);
+        }
+        
     }
 
     void NewRound()
