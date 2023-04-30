@@ -16,7 +16,7 @@ public class Spawn : MonoBehaviour
 
     private bool TimeBeforeSpawnChoosen;
     private bool canSpawnBarier = true;
-    private float TimeBeforeSpawn;
+    private float TimeBeforeSpawn = 200;
     private float timeBeforeLast;
     public GameObject Bonus, Malus;
     public List<GameObject> BarrieresList = new List<GameObject>();
@@ -30,7 +30,7 @@ public class Spawn : MonoBehaviour
     {
         Vector3 SpawnPoint;
         SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
-        if (Random.Range(0, 2) == 0)
+        if (Random.Range(0, 2) == 3)
         {
             if (Random.Range(0, 2) == 0)
             {
@@ -54,9 +54,10 @@ public class Spawn : MonoBehaviour
                 int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
                 SpawnPoint = new Vector3(randomNumber, Random.Range(0, maxUp), 0);
                 GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
-                if (randomNumber == 16)
+                if (randomNumber == -16)
                 {
                     obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
+                    obj.transform.rotation = Quaternion.Euler(0, -180, 0);
                 }
 
 
@@ -83,16 +84,22 @@ public class Spawn : MonoBehaviour
                         sides = 13f;
 
                     }
-                    SpawnPoint = new Vector3(sides, Random.Range(minUp, centerUp), 0);
+                    SpawnPoint = new Vector3(sides, 0.25f, Random.Range(-3, -7));
                 
-                GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(-65f, 0, 0));
-                Vector3 direction = new Vector3(-sides, newDeliveryMan.transform.position.y, newDeliveryMan.transform.position.z) - newDeliveryMan.transform.position;
-                newDeliveryMan.transform.up = direction.normalized;
-                if (SpawnPoint.x > 0)
+                GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(90f, 0, 90f));
+                Vector3 direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0) ;
+                //newDeliveryMan.transform.up = direction.normalized;
+                if (SpawnPoint.x < 0)
                 {
-                    newDeliveryMan.GetComponent<DeliveryMan>().Speed = -newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                    Debug.Log("itchanged");
+                    newDeliveryMan.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                    newDeliveryMan.transform.rotation = Quaternion.Euler(90f, 0, -90f);
                 }
-                newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                else
+                {
+                    newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                }
+               
                 if (Random.Range(0, 5) == 0)
                 {
                     if (Random.Range(0, 2) == 0)
@@ -118,9 +125,10 @@ public class Spawn : MonoBehaviour
     {
         if (canSpawnBarier)
         {
+            Debug.Log("spawn");
             canSpawnBarier = false;
             spawnEntity();
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(1f);
             canSpawnBarier = true ;
         }
         
