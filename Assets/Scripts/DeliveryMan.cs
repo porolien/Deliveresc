@@ -40,12 +40,13 @@ public class DeliveryMan : MonoBehaviour
 
                 }
                 GameManager.Instance.Points = 1;
+                GameManager.Instance.times = 2;
             }
             else
             {
                 GameManager.Instance.Points = -1;
             }
-           
+            Destroy(gameObject);
         }
         else if(other.gameObject.tag == "Barrier")
         {

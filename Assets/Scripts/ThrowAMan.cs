@@ -35,7 +35,6 @@ public class ThrowAMan : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log(Input.mousePosition);
             ThrowSomeone();
         }
     }

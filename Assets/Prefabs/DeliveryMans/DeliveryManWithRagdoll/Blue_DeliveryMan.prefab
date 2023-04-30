@@ -3130,8 +3130,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9792924, y: 1.9626052, z: 0.1872387}
-  m_Center: {x: 0.043141246, y: 0.4813056, z: 0.40638036}
+  m_Size: {x: 1.9213164, y: 1.9626052, z: 1.5786828}
+  m_Center: {x: -0.056406498, y: 0.4813056, z: -0.90071994}
 --- !u!54 &-4152554699920684710
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3162,7 +3162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   direction: {x: 0, y: 0, z: 0}
-  BrandName: 
+  BrandName: Omozon
   isNotKind: 0
   giveABuff: 0
 --- !u!95 &2162124716659588596

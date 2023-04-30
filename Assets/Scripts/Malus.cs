@@ -7,14 +7,16 @@ public class Malus : MonoBehaviour
 {
 
     public string MalusType;
-    public List<string> MalusList = new List<string> { "AugmentTime","ReduceTime","FDPSpawn" };
+    public List<string> MalusList = new List<string> { "AugmentTime", "Point/2", "FDPSpawn" };
+
+    [SerializeField] private List<MeshFilter> MeshMalus = new List<MeshFilter>();
     // Start is called before the first frame update
     void Start()
     {
-        System.Random rnd = new System.Random();
+     /*   System.Random rnd = new System.Random();
         int indexAleatoire = rnd.Next(0, MalusList.Count);
 
-        MalusType = MalusList[indexAleatoire];
+        MalusType = MalusList[indexAleatoire];*/
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class Malus : MonoBehaviour
     }
     public void ReduceTime()
     {
-        GameManager.Instance.times =7;
+        GameManager.Instance.times = 7;
         Destroy(gameObject);
     }
 
@@ -39,7 +41,7 @@ public class Malus : MonoBehaviour
         {
             AugmentTimeMalus();
         }
-        if (MalusType == "ReduceTime")
+        if (MalusType == "Point/2")
         {
             ReduceTime();
         }

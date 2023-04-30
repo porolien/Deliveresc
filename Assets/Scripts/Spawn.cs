@@ -21,6 +21,8 @@ public class Spawn : MonoBehaviour
     public GameObject Bonus, Malus;
     public List<GameObject> BarrieresList = new List<GameObject>();
     public List<GameObject> DeliveryManList = new List<GameObject>();
+    public List<GameObject> BonusList = new List<GameObject>();
+    public List<GameObject> MalusList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -30,16 +32,16 @@ public class Spawn : MonoBehaviour
     {
         Vector3 SpawnPoint;
         
-        if (Random.Range(0, 2) == 3)
+        if (Random.Range(0, 2) == 0)
         {
             SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
             if (Random.Range(0, 2) == 0)
             {
-                GameObject buff = Instantiate(Bonus, SpawnPoint, Quaternion.identity);
+                GameObject buff = Instantiate(BonusList[Random.Range(0, BonusList.Count)], SpawnPoint, Quaternion.identity);
             }
             else
             {
-                GameObject debuff = Instantiate(Malus, SpawnPoint, Quaternion.identity);
+                GameObject debuff = Instantiate(MalusList[Random.Range(0, MalusList.Count)], SpawnPoint, Quaternion.identity);
             }
         }
         else
@@ -47,19 +49,25 @@ public class Spawn : MonoBehaviour
             int rand = Random.Range(0, BarrieresList.Count);
             if (BarrieresList[rand].name == "TrashCan")
             {
-                SpawnPoint = new Vector3(Random.Range(minSides, maxSides), Random.Range(0, maxUp), 0);
+                SpawnPoint = new Vector3(Random.Range(minSides, maxSides), 0.67f, 0);
                 GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
+                obj.transform.rotation = Quaternion.Euler(270, 0, 0);
             }
             else
             {
                 int randomNumber = (Random.Range(0, 2) == 0) ? 16 : -16;
-                SpawnPoint = new Vector3(randomNumber, Random.Range(2, maxUp), 0);
+                SpawnPoint = new Vector3(randomNumber, 0,  Random.Range(2, maxUp));
                 GameObject obj = Instantiate(BarrieresList[rand], SpawnPoint, Quaternion.identity);
-                if (randomNumber == 16)
+               
+                    if (randomNumber == 16)
                 {
                     obj.GetComponent<Barrier>().Speed = -obj.GetComponent<Barrier>().Speed;
                     obj.transform.rotation = Quaternion.Euler(0, -180, 0);
                 }
+               /* if (obj.name == "Women with kid")
+                {
+                    obj.transform.Rotate(0, 90, 0);
+                }*/
 
 
             }
@@ -92,7 +100,6 @@ public class Spawn : MonoBehaviour
                 //newDeliveryMan.transform.up = direction.normalized;
                 if (SpawnPoint.x < 0)
                 {
-                    Debug.Log("itchanged");
                     newDeliveryMan.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
                     newDeliveryMan.transform.rotation = Quaternion.Euler(90f, 0, -90f);
                 }

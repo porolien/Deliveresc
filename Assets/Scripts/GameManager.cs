@@ -12,24 +12,34 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI RemainingTime;
     public TextMeshProUGUI PointsText;
 
-    private int Round;
+    public float PointX2;
+
+    private int Round = 1;
     public List<string> brandName = new List<string>();
     [SerializeField] private List<GameObject> DeliveryMansToAdd = new List<GameObject>();
     public Spawn spawn;
+    [SerializeField] private List<RelayPoint> relayPoints = new List<RelayPoint>();
 
-    private float points;
+   private float points;
     public float Points
     {
         get { return points; }
         set
         {
-            points = value + points;
+            if (PointX2 > 0)
+            {
+                points = value*2 + points;
+            }
+            else
+            {
+                points = value + points;
+            }
             PointsText.text = "" + points;
-            if (Round == 1 && points == 5)
+            if (Round == 1 && points >= 5)
             {
                 NewRound();
             }
-            else if (Round == 2 && points == 10)
+            else if (Round == 2 && points >= 10)
             {
                 NewRound();
             }
@@ -80,6 +90,7 @@ public class GameManager : MonoBehaviour
         timeBeforeLast += Time.deltaTime;
         if (timeBeforeLast > timeMultiplator)
         {
+            PointX2 = PointX2 - timeMultiplator;
             timeBeforeLast = 0;
             times = -1;
         }
@@ -100,20 +111,28 @@ public class GameManager : MonoBehaviour
         Round++;
         if (Round == 2)
         {
-            AddBrand("");
+            AddBrand("UTerEats");
         }
         if (Round == 3)
         {
-            AddBrand("");
+            AddBrand("Wcdonald");
+        }
+        foreach (RelayPoint relayBrand in relayPoints)
+        {
+            if (relayBrand.BrandName == brandName[brandName.Count - 1])
+            {
+                Debug.Log(relayBrand.gameObject.name);
+                relayBrand.GetComponent<BoxCollider>().enabled = true;
+            }
         }
     }
 
     void AddBrand(string brand)
     {
-        brandName.Add("");
+        brandName.Add(brand);
         foreach (GameObject Man in DeliveryMansToAdd)
         {
-            if (Man.GetComponent<DeliveryMan>().BrandName == "")
+            if (Man.GetComponent<DeliveryMan>().BrandName == brand)
             {
                 spawn.DeliveryManList.Add(Man);
 
