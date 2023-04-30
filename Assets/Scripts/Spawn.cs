@@ -14,9 +14,11 @@ public class Spawn : MonoBehaviour
     [SerializeField] private float maxTimeToSpawn;
     [SerializeField] private float testHauteur;
 
-    private bool TimeBeforeSpawnChoosen;
     private bool canSpawnBarier = true;
-    private float TimeBeforeSpawn;
+    private bool canSpawnEntity = true;
+    public float TimeBeforeSpawnEntity = 10f;
+    public float TimeBeforeSpawnBarrier = 8f;
+    public float TimeBeforeSpawnDeliveryMan = 1.5f;
     private float timeBeforeLast;
     public GameObject Bonus, Malus;
     public List<GameObject> BarrieresList = new List<GameObject>();
@@ -54,16 +56,14 @@ public class Spawn : MonoBehaviour
     {
 
         StartCoroutine(naturalEntitySpawn());
-        if (TimeBeforeSpawnChoosen)
-        {
-            timeBeforeLast += Time.deltaTime;
-            if (timeBeforeLast > TimeBeforeSpawn)
+        StartCoroutine(naturalBarrierSpawn());
+        timeBeforeLast += Time.deltaTime;
+            if (timeBeforeLast > TimeBeforeSpawnDeliveryMan)
             {
                 timeBeforeLast = 0;
-                TimeBeforeSpawnChoosen = false;
                 Vector3 SpawnPoint;
                 float sides = -13f;
-                if (Random.Range(0, 2) == 0)
+                if (Random.Range(0, 1f) < 0.5f)
                 {
                     sides = 13f;
 
@@ -95,12 +95,7 @@ public class Spawn : MonoBehaviour
                         newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true;
                     }
                 }
-            }
-        }
-        else
-        {
-            TimeBeforeSpawn = Random.Range(minTimeToSpawn, maxTimeToSpawn);
-            TimeBeforeSpawnChoosen = true;
+            
         }
     }
     public void spawnBarrier(Vector3 SpawnPoint)
@@ -139,11 +134,22 @@ public class Spawn : MonoBehaviour
     }
     IEnumerator naturalEntitySpawn()
     {
+        if (canSpawnEntity)
+        {
+            canSpawnEntity = false;
+            spawnEntity();
+            yield return new WaitForSeconds(TimeBeforeSpawnEntity);
+            canSpawnEntity = true;
+        }
+
+    }
+    IEnumerator naturalBarrierSpawn()
+    {
         if (canSpawnBarier)
         {
             canSpawnBarier = false;
             spawnEntity();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(TimeBeforeSpawnBarrier);
             canSpawnBarier = true;
         }
 

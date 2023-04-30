@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI PointsText;
 
     public float PointX2;
+    public int Combos;
+    private int PointsMultipliactor = 1;
+    private int CounterToBreakCombos;
 
     private int Round = 1;
     public List<string> brandName = new List<string>();
@@ -27,20 +30,28 @@ public class GameManager : MonoBehaviour
         get { return points; }
         set
         {
-            if (PointX2 > 0)
+            if (PointX2 > 0 && value > 0)
             {
-                points = value*2 + points;
+                points = value * 2 * PointsMultipliactor + points;
             }
             else
             {
-                points = value + points;
+                if(value > 0)
+                {
+                    points = value * PointsMultipliactor + points;
+                }
+                else
+                {
+                    points = value + points;
+                }
+               
             }
             PointsText.text = "" + points;
-            if (Round == 1 && points >= 5)
+            if (Round == 1 && points >= 50)
             {
                 NewRound();
             }
-            else if (Round == 2 && points >= 10)
+            else if (Round == 2 && points >= 100)
             {
                 NewRound();
             }
@@ -120,10 +131,14 @@ public class GameManager : MonoBehaviour
         Round++;
         if (Round == 2)
         {
+            spawn.TimeBeforeSpawnDeliveryMan = 1;
+            spawn.TimeBeforeSpawnBarrier = 6;
             AddBrand("UTerEats");
         }
         if (Round == 3)
         {
+            spawn.TimeBeforeSpawnDeliveryMan = 0.5f;
+            spawn.TimeBeforeSpawnBarrier = 4f;
             AddBrand("Wcdonald");
         }
         foreach (RelayPoint relayBrand in relayPoints)
@@ -147,5 +162,61 @@ public class GameManager : MonoBehaviour
 
             }
         }
+    }
+
+    public void CombosMultiplicator()
+    {
+        switch (Combos)
+        {
+            case 5:
+                points = points + 10;
+                times = +5;
+                break;
+            case 20:
+                points = points + 100;
+                PointsMultipliactor = 2;
+                break;
+            case 35:
+                points = points + 200;
+                PointsMultipliactor = 3;
+                times = +10;
+                break;
+            case 50:
+                points = points + 500;
+                PointsMultipliactor = 5;
+                times = +20;
+                break;
+            case 69:
+                points = points + 690;
+                times = +69;
+                break;
+            case 75:
+                points = points + 1000;
+                PointsMultipliactor = 10;
+                break;
+            case 100:
+                points = points + 10000;
+                PointsMultipliactor = 100;
+                times = +100;
+                break;
+            default:
+                break;
+        }
+        PointsText.text = "" + points;
+    }
+
+    public void BreakTheCombos(bool Need2ToBreak)
+    {
+        if (CounterToBreakCombos >=2 || !Need2ToBreak)
+        {
+            Combos = 0;
+            CounterToBreakCombos = 0;
+            PointsMultipliactor = 1;
+        }
+        else
+        {
+            CounterToBreakCombos++;
+        }
+        
     }
 }
