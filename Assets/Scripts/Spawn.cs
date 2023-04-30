@@ -13,6 +13,8 @@ public class Spawn : MonoBehaviour
     [SerializeField] private float minTimeToSpawn;
     [SerializeField] private float maxTimeToSpawn;
     [SerializeField] private float testHauteur;
+    [SerializeField] private GameObject GreenParticles;
+    [SerializeField] private GameObject RedParticles;
 
     private bool canSpawnBarier = true;
     private bool canSpawnEntity = true;
@@ -58,44 +60,49 @@ public class Spawn : MonoBehaviour
         StartCoroutine(naturalEntitySpawn());
         StartCoroutine(naturalBarrierSpawn());
         timeBeforeLast += Time.deltaTime;
-            if (timeBeforeLast > TimeBeforeSpawnDeliveryMan)
+        if (timeBeforeLast > TimeBeforeSpawnDeliveryMan)
+        {
+            timeBeforeLast = 0;
+            Vector3 SpawnPoint;
+            float sides = -13f;
+            if (Random.Range(0, 1f) < 0.5f)
             {
-                timeBeforeLast = 0;
-                Vector3 SpawnPoint;
-                float sides = -13f;
-                if (Random.Range(0, 1f) < 0.5f)
-                {
-                    sides = 13f;
+                sides = 13f;
 
-                }
-                SpawnPoint = new Vector3(sides, 0.25f, Random.Range(-3, -7));
+            }
+            SpawnPoint = new Vector3(sides, 0.25f, Random.Range(-3, -7));
 
-                GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(90f, 0, 90f));
-                GameManager.Instance.ListDeliveryMan.Add(newDeliveryMan);
-                Vector3 direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0);
-                //newDeliveryMan.transform.up = direction.normalized;
-                if (SpawnPoint.x < 0)
+            GameObject newDeliveryMan = Instantiate(DeliveryManList[Random.Range(0, DeliveryManList.Count)], SpawnPoint, Quaternion.Euler(90f, 0, 90f));
+            GameManager.Instance.ListDeliveryMan.Add(newDeliveryMan);
+            Vector3 direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0);
+            //newDeliveryMan.transform.up = direction.normalized;
+            if (SpawnPoint.x < 0)
+            {
+                newDeliveryMan.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                newDeliveryMan.transform.rotation = Quaternion.Euler(90f, 0, -90f);
+            }
+            else
+            {
+                newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+            }
+
+            if (Random.Range(0, 5) == 0)
+            {
+                if (Random.Range(0, 2) == 0)
                 {
-                    newDeliveryMan.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
-                    newDeliveryMan.transform.rotation = Quaternion.Euler(90f, 0, -90f);
+                    newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;
+                    GameObject ParticlesNotKind = Instantiate(RedParticles, new Vector3(sides, 2, SpawnPoint.z), Quaternion.Euler(90, 0, 0));
+                    ParticlesNotKind.transform.SetParent(newDeliveryMan.transform, true);
                 }
                 else
                 {
-                    newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                    newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true;
+                    GameObject ParticlesGiveABuff = Instantiate(GreenParticles, new Vector3(sides, 2, SpawnPoint.z), Quaternion.Euler(90, 0, 0));
+                    ParticlesGiveABuff.transform.SetParent(newDeliveryMan.transform, true);
                 }
+            }
 
-                if (Random.Range(0, 5) == 0)
-                {
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;
-                    }
-                    else
-                    {
-                        newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true;
-                    }
-                }
-            
+
         }
     }
     public void spawnBarrier(Vector3 SpawnPoint)
@@ -157,7 +164,7 @@ public class Spawn : MonoBehaviour
     IEnumerator TrashExplosion(GameObject Trash)
     {
         yield return new WaitForSeconds(20f);
-        if(Trash != null)
+        if (Trash != null)
         {
             GameManager.Instance.ListBarrières.Remove(Trash);
             Destroy(Trash);

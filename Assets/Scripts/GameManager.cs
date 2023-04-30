@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> ListDeliveryMan = new List<GameObject>();
     public TextMeshProUGUI RemainingTime;
     public TextMeshProUGUI PointsText;
+    public GameObject DefeatUI;
 
     public float PointX2;
     public int Combos;
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        times = 100;
+        times = 1;
         float score = PlayerPrefs.GetFloat("Highscore");
     }
 
@@ -118,10 +119,12 @@ public class GameManager : MonoBehaviour
     }
     void Defeat()
     {
-        Debug.Log("defeat");
-        if(PlayerPrefs.GetFloat("Highscore") < time)
+        DefeatUI.SetActive(true);
+        RemainingTime.gameObject.SetActive(false);
+        PointsText.gameObject.SetActive(false);
+        if(PlayerPrefs.GetFloat("Highscore") < points)
         {
-            PlayerPrefs.SetFloat("Highscore", time);
+            PlayerPrefs.SetFloat("Highscore", points);
         }
         
     }
