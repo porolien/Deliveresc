@@ -22,13 +22,14 @@ public class ThrowAMan : MonoBehaviour
             Debug.Log(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            
             if (Physics.Raycast(ray, out hit, 10000))
             {
-                Debug.Log(hit.transform.gameObject);
                 if (hit.transform.gameObject.tag == "DeliveryMan")
                 {
                     TheManToThrowAway = hit.transform.gameObject;
+                    TheManToThrowAway.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    TheManToThrowAway.GetComponent<Animator>().SetBool("IsFloating", enabled);
+                    TheManToThrowAway.transform.rotation = Quaternion.Euler(50, 180, 0);
                 }
             }
         }

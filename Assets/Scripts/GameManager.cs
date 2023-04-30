@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> ListBarrières = new List<GameObject>();
     public TextMeshProUGUI RemainingTime;
     public TextMeshProUGUI PointsText;
+
     private int Round;
     public List<string> brandName = new List<string>();
+    [SerializeField] private List<GameObject> DeliveryMansToAdd = new List<GameObject>();
+    public Spawn spawn;
 
     private float points;
     public float Points
@@ -23,11 +27,11 @@ public class GameManager : MonoBehaviour
             PointsText.text = "" + points;
             if (Round == 1 && points == 5)
             {
-                Round = 2;
+                NewRound();
             }
             else if (Round == 2 && points == 10)
             {
-                Round = 3;
+                NewRound();
             }
         }
     }
@@ -39,11 +43,17 @@ public class GameManager : MonoBehaviour
         {
             time = value + time;
             RemainingTime.text = "" + time;
+            if (time <= 0)
+            {
+                Defeat();
+            }
         }
     }
     public float timeMultiplator = 1;
 
     private float timeBeforeLast;
+
+    private float Highscore;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -61,6 +71,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         times = 100;
+        float score = PlayerPrefs.GetFloat("Highscore");
     }
 
     // Update is called once per frame
@@ -73,5 +84,40 @@ public class GameManager : MonoBehaviour
             times = -1;
         }
 
+    }
+    void Defeat()
+    {
+        Debug.Log("defeat");
+        if(PlayerPrefs.GetFloat("Highscore") < time)
+        {
+            PlayerPrefs.SetFloat("Highscore", time);
+        }
+        
+    }
+
+    void NewRound()
+    {
+        Round++;
+        if (Round == 2)
+        {
+            AddBrand("");
+        }
+        if (Round == 3)
+        {
+            AddBrand("");
+        }
+    }
+
+    void AddBrand(string brand)
+    {
+        brandName.Add("");
+        foreach (GameObject Man in DeliveryMansToAdd)
+        {
+            if (Man.GetComponent<DeliveryMan>().BrandName == "")
+            {
+                spawn.DeliveryManList.Add(Man);
+
+            }
+        }
     }
 }
