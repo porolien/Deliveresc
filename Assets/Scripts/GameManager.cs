@@ -218,6 +218,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
         PointsText.text = "" + points;
+        CombosUI.gameObject.GetComponent<Animator>().Play("Combo");
     }
 
     public void BreakTheCombos(bool Need2ToBreak)

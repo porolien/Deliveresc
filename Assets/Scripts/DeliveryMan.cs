@@ -10,6 +10,7 @@ public class DeliveryMan : MonoBehaviour
     public Vector3 direction;
     public string BrandName;
     public bool isNotKind;
+    public bool isGiletJaune;
     public bool giveABuff;
     public bool hasBeThrowned;
     [SerializeField] private GameObject StarsParticles;
@@ -53,7 +54,6 @@ public class DeliveryMan : MonoBehaviour
                 GameManager.Instance.Points = 1;
                 GameManager.Instance.AddTimes();
                 GameManager.Instance.Combos = GameManager.Instance.Combos + 1;
-                Debug.Log(GameManager.Instance.Combos);
                 GameManager.Instance.CombosUI.text = "" + GameManager.Instance.Combos;
                 GameManager.Instance.CombosMultiplicator();
                 GameManager.Instance.CounterToBreakCombos = 0;
@@ -73,8 +73,9 @@ public class DeliveryMan : MonoBehaviour
             if (!isNotKind)
             {
                 GameManager.Instance.times = -5;
+                GameManager.Instance.BreakTheCombos(false);
             }
-            GameManager.Instance.BreakTheCombos(false);
+           
             GameManager.Instance.ListBarrières.Remove(other.gameObject);
             Destroy(other.gameObject);
             Explosion();
