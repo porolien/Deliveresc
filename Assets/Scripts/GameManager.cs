@@ -14,11 +14,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI PointsText;
     public GameObject DefeatUI;
     [SerializeField] private TextMeshProUGUI HighscoreUI;
+    public TextMeshProUGUI CombosUI;
 
     public float PointX2;
     public int Combos;
     private int PointsMultipliactor = 1;
-    private int CounterToBreakCombos;
+    public int CounterToBreakCombos;
 
     private int Round = 1;
     public List<string> brandName = new List<string>();
@@ -221,6 +222,7 @@ public class GameManager : MonoBehaviour
 
     public void BreakTheCombos(bool Need2ToBreak)
     {
+       
         if (CounterToBreakCombos >=2 || !Need2ToBreak)
         {
             Combos = 0;

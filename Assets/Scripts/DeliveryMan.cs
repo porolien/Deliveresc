@@ -52,14 +52,19 @@ public class DeliveryMan : MonoBehaviour
                 }
                 GameManager.Instance.Points = 1;
                 GameManager.Instance.AddTimes();
-                GameManager.Instance.Combos += 1;
+                GameManager.Instance.Combos = GameManager.Instance.Combos + 1;
+                Debug.Log(GameManager.Instance.Combos);
+                GameManager.Instance.CombosUI.text = "" + GameManager.Instance.Combos;
                 GameManager.Instance.CombosMultiplicator();
+                GameManager.Instance.CounterToBreakCombos = 0;
+                Instantiate(StarsParticles, transform.position, Quaternion.identity);
             }
             else
             {
                 GameManager.Instance.Points = -1;
+                GameManager.Instance.BreakTheCombos(false);
             }
-            GameManager.Instance.BreakTheCombos(false);
+           
             GameManager.Instance.ListDeliveryMan.Remove(gameObject);
             Destroy(gameObject);
         }
@@ -77,6 +82,7 @@ public class DeliveryMan : MonoBehaviour
         else if (other.gameObject.tag == "Bonus")
         {
             GameManager.Instance.Combos += 1;
+            GameManager.Instance.CombosUI.text = "" + GameManager.Instance.Combos;
             GameManager.Instance.CombosMultiplicator();
             other.gameObject.GetComponent<Bonus>().GetBonus();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -85,7 +91,6 @@ public class DeliveryMan : MonoBehaviour
         }
         else if (other.gameObject.tag == "Malus")
         {
-            GameManager.Instance.BreakTheCombos(true);
             other.gameObject.GetComponent<Malus>().GetMalus();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
