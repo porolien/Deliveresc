@@ -28,6 +28,7 @@ public class ThrowAMan : MonoBehaviour
                     TheManToThrowAway = hit.transform.gameObject;
                     TheManToThrowAway.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     TheManToThrowAway.GetComponent<Animator>().SetBool("IsFloating", enabled);
+                    GameManager.Instance.crySearch(false);
                     TheManToThrowAway.transform.rotation = Quaternion.Euler(50, 180, 0);
                 }
             }
@@ -46,6 +47,7 @@ public class ThrowAMan : MonoBehaviour
         TheManToThrowAway.GetComponent<DeliveryMan>().hasBeThrowned = true;
         TheManToThrowAway.GetComponent<Rigidbody>().velocity = new Vector3(direction.x, 0, direction.y).normalized * ThrowSpeed;
         TheManToThrowAway.GetComponent<Animator>().SetBool("IsThrowned", enabled);
+        GameManager.Instance.crySearch(true);
         TheManToThrowAway = null;
     }
 }

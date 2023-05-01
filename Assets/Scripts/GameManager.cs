@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public Spawn spawn;
     [SerializeField] private List<RelayPoint> relayPoints = new List<RelayPoint>();
 
+    [SerializeField] private List<AudioClip> cry = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> HorribleCry = new List<AudioClip>();
+
    private float points;
     public float Points
     {
@@ -235,5 +238,17 @@ public class GameManager : MonoBehaviour
             CounterToBreakCombos++;
         }
         
+    }
+    public void crySearch(bool heIsThrowned)
+    {
+        if (heIsThrowned)
+        {
+            GetComponent<AudioSource>().clip = cry[Random.Range(0, cry.Count)];
+        }
+        else
+        {
+            GetComponent<AudioSource>().clip = HorribleCry[Random.Range(0, HorribleCry.Count)];
+        }
+        GetComponent<AudioSource>().Play();
     }
 }
