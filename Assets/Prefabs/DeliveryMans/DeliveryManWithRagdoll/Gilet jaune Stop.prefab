@@ -587,11 +587,10 @@ GameObject:
   - component: {fileID: 2561402221900899274}
   - component: {fileID: 4156567970992428993}
   - component: {fileID: 185343894654663450}
-  - component: {fileID: -3008735327233675570}
   - component: {fileID: -4675045368895273881}
   m_Layer: 0
-  m_Name: Gilet jaune
-  m_TagString: DeliveryMan
+  m_Name: Gilet jaune Stop
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,29 +641,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-3008735327233675570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2936414110503205232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0056ae57b283c948aeb0090bbb0b06c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 10
-  addTime: 2
-  LastSpeed: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  BrandName: 
-  isNotKind: 1
-  isGiletJaune: 1
-  giveABuff: 0
-  hasBeThrowned: 0
-  StarsParticles: {fileID: 3562297104717670484, guid: e9ba0ec6086da104caa8a6216afc0cca, type: 3}
-  ExplosionParticles: {fileID: 3032556600280733039, guid: 389ab0332ae742345a18d4e1b8e2d557, type: 3}
 --- !u!95 &-4675045368895273881
 Animator:
   serializedVersion: 4
@@ -675,7 +651,7 @@ Animator:
   m_GameObject: {fileID: 2936414110503205232}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3f41a0893c269948a1b30f7b29c430f, type: 2}
+  m_Controller: {fileID: 9100000, guid: d43ae067678695745ab3dd82332399fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

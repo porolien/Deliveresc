@@ -2748,7 +2748,8 @@ MonoBehaviour:
   TimeBeforeSpawnDeliveryMan: 1.5
   Bonus: {fileID: 7139378233375819388, guid: 4cdb545463c347a4a924485a0640893c, type: 3}
   Malus: {fileID: 7139378233375819388, guid: b2516185e4f7f0a4a990085ea7736e21, type: 3}
-  giletJaune: {fileID: 0}
+  giletJaune: {fileID: 2936414110503205232, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
+  giletJauneStop: {fileID: 2936414110503205232, guid: 404abac4d8f64cf4e8ce4136b9028126, type: 3}
   BarrieresList:
   - {fileID: 2198482855054461222, guid: 5893118112141e64d9059f5edfc9a3b2, type: 3}
   - {fileID: 3089792995745650784, guid: e714bbe9f6403ca4688e985579fc787f, type: 3}
@@ -2778,60 +2779,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 665440066}
---- !u!1001 &2594448056442796365
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561402221900899274, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936414110503205232, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
-      propertyPath: m_Name
-      value: Gilet jaune
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
