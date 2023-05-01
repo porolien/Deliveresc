@@ -23,6 +23,7 @@ public class Spawn : MonoBehaviour
     public float TimeBeforeSpawnDeliveryMan = 1.5f;
     private float timeBeforeLast;
     public GameObject Bonus, Malus;
+    public GameObject giletJaune;
     public List<GameObject> BarrieresList = new List<GameObject>();
     public List<GameObject> DeliveryManList = new List<GameObject>();
     public List<GameObject> BonusList = new List<GameObject>();
@@ -88,17 +89,32 @@ public class Spawn : MonoBehaviour
 
             if (Random.Range(0, 5) == 0)
             {
-                if (Random.Range(0, 2) == 0)
+                switch (Random.Range(0, 3))
                 {
-                    newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;
-                    GameObject ParticlesNotKind = Instantiate(RedParticles, new Vector3(sides, 2, SpawnPoint.z), Quaternion.Euler(90, 0, 0));
-                    ParticlesNotKind.transform.SetParent(newDeliveryMan.transform, true);
-                }
-                else
-                {
-                    newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true;
-                    GameObject ParticlesGiveABuff = Instantiate(GreenParticles, new Vector3(sides, 2, SpawnPoint.z), Quaternion.Euler(90, 0, 0));
-                    ParticlesGiveABuff.transform.SetParent(newDeliveryMan.transform, true);
+                    case 0:
+                        newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;
+                        GameObject ParticlesNotKind = Instantiate(RedParticles, new Vector3(sides, 2, SpawnPoint.z), Quaternion.Euler(90, 0, 0));
+                        ParticlesNotKind.transform.SetParent(newDeliveryMan.transform, true);
+                        break;
+                    case 1:
+                        newDeliveryMan.GetComponent<DeliveryMan>().giveABuff = true;
+                        GameObject ParticlesGiveABuff = Instantiate(GreenParticles, new Vector3(sides, 2, SpawnPoint.z), Quaternion.Euler(90, 0, 0));
+                        ParticlesGiveABuff.transform.SetParent(newDeliveryMan.transform, true);
+                        break;
+                    case 2:
+                        GameObject newGiletJaune = Instantiate(giletJaune, SpawnPoint, Quaternion.Euler(90f, 0, 90f));
+                        GameManager.Instance.ListDeliveryMan.Add(newDeliveryMan);
+                        direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0);
+                        if (SpawnPoint.x < 0)
+                        {
+                            newDeliveryMan.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                            newDeliveryMan.transform.rotation = Quaternion.Euler(90f, 0, -90f);
+                        }
+                        else
+                        {
+                            newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                        }
+                        break;
                 }
             }
 
