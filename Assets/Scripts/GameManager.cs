@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
                
             }
             PointsText.text = "" + points;
-            if (Round == 1 && points >= 50)
+            if (Round == 1 && points >= 100)
             {
                 NewRound();
             }
-            else if (Round == 2 && points >= 100)
+            else if (Round == 2 && points >= 250)
             {
                 NewRound();
             }
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
                 times = +5;
                 break;
             case 20:
-                points = points + 100;
+                points = points + 50;
                 PointsMultipliactor = 2;
                 break;
             case 35:

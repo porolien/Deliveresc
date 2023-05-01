@@ -18,7 +18,7 @@ public class DeliveryMan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // StartCoroutine(DelayBeforeStop());
+        // StartCoroutine(DelayBeforeStop());
     }
 
     // Update is called once per frame
@@ -37,15 +37,26 @@ public class DeliveryMan : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        if (other.gameObject.tag == "RelayPoint" )
+        if (other.gameObject.tag == "RelayPoint")
         {
+            Debug.Log(gameObject.name);
+            if (isGiletJaune)
+            {
+                GameManager.Instance.spawn.spawnGiletJaune(transform);
+                GameManager.Instance.Points = -5;
+                GameManager.Instance.times = -10;
+                GameManager.Instance.BreakTheCombos(false);
+                GameManager.Instance.ListDeliveryMan.Remove(gameObject);
+                Destroy(gameObject);
+            }
+
             if (isNotKind)
             {
                 GameManager.Instance.Points = -5;
                 GameManager.Instance.times = -10;
                 GameManager.Instance.BreakTheCombos(false);
             }
-            else if(BrandName == other.GetComponent<RelayPoint>().BrandName)
+            else if (BrandName == other.GetComponent<RelayPoint>().BrandName)
             {
                 if (giveABuff)
                 {
@@ -64,18 +75,19 @@ public class DeliveryMan : MonoBehaviour
                 GameManager.Instance.Points = -1;
                 GameManager.Instance.BreakTheCombos(false);
             }
-           
+
             GameManager.Instance.ListDeliveryMan.Remove(gameObject);
             Destroy(gameObject);
         }
-        else if(other.gameObject.tag == "Barrier")
+
+        else if (other.gameObject.tag == "Barrier")
         {
             if (!isNotKind)
             {
                 GameManager.Instance.times = -5;
                 GameManager.Instance.BreakTheCombos(false);
             }
-           
+
             GameManager.Instance.ListBarrières.Remove(other.gameObject);
             Destroy(other.gameObject);
             Explosion();
@@ -88,7 +100,7 @@ public class DeliveryMan : MonoBehaviour
             other.gameObject.GetComponent<Bonus>().GetBonus();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            
+
         }
         else if (other.gameObject.tag == "Malus")
         {
@@ -105,9 +117,9 @@ public class DeliveryMan : MonoBehaviour
         GameManager.Instance.ListDeliveryMan.Remove(gameObject);
         Destroy(gameObject);
     }
-  /*  IEnumerator DelayBeforeStop()
-    {
-        yield return new WaitForSeconds(3f);
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-    }*/
+    /*  IEnumerator DelayBeforeStop()
+      {
+          yield return new WaitForSeconds(3f);
+          GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+      }*/
 }

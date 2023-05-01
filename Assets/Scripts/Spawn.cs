@@ -24,6 +24,7 @@ public class Spawn : MonoBehaviour
     private float timeBeforeLast;
     public GameObject Bonus, Malus;
     public GameObject giletJaune;
+    public GameObject giletJauneStop;
     public List<GameObject> BarrieresList = new List<GameObject>();
     public List<GameObject> DeliveryManList = new List<GameObject>();
     public List<GameObject> BonusList = new List<GameObject>();
@@ -160,6 +161,10 @@ public class Spawn : MonoBehaviour
                 }
             }
         }
+    }
+    public void spawnGiletJaune(Transform giletJauneThrowned)
+    {
+        Instantiate(giletJauneStop, giletJauneThrowned.position, Quaternion.Euler(0, 180, 0));
     }
     IEnumerator naturalEntitySpawn()
     {
