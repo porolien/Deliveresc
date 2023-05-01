@@ -90,7 +90,7 @@ public class Spawn : MonoBehaviour
 
             if (Random.Range(0, 5) == 0)
             {
-                switch (Random.Range(2, 3))
+                switch (Random.Range(0, 3))
                 {
                     case 0:
                         newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;

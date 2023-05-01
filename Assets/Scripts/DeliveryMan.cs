@@ -34,6 +34,7 @@ public class DeliveryMan : MonoBehaviour
             if (!isNotKind)
             {
                 GameManager.Instance.BreakTheCombos(true);
+                GameManager.Instance.times = -1;
             }
             Destroy(gameObject);
         }
@@ -73,6 +74,7 @@ public class DeliveryMan : MonoBehaviour
             else
             {
                 GameManager.Instance.Points = -1;
+                GameManager.Instance.times = -1;
                 GameManager.Instance.BreakTheCombos(false);
             }
 
