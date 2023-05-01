@@ -2567,8 +2567,10 @@ MonoBehaviour:
   PointsText: {fileID: 0}
   DefeatUI: {fileID: 0}
   HighscoreUI: {fileID: 0}
+  CombosUI: {fileID: 0}
   PointX2: 0
   Combos: 0
+  CounterToBreakCombos: 0
   brandName: []
   DeliveryMansToAdd:
   - {fileID: 4051510367475162975, guid: b853c919b9955b44db0bd84424b13a15, type: 3}
