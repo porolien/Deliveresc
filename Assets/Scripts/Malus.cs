@@ -12,10 +12,11 @@ public class Malus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     /*   System.Random rnd = new System.Random();
-        int indexAleatoire = rnd.Next(0, MalusList.Count);
+        /*   System.Random rnd = new System.Random();
+           int indexAleatoire = rnd.Next(0, MalusList.Count);
 
-        MalusType = MalusList[indexAleatoire];*/
+           MalusType = MalusList[indexAleatoire];*/
+        StartCoroutine(DelayDCD());
     }
 
     // Update is called once per frame
@@ -59,6 +60,11 @@ public class Malus : MonoBehaviour
     {
         yield return new WaitForSeconds(7f);
         GameManager.Instance.timeMultiplator = 1F;
+        Destroy(gameObject);
+    }
+    IEnumerator DelayDCD()
+    {
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 }

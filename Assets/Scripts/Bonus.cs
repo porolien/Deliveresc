@@ -17,6 +17,7 @@ public class Bonus : MonoBehaviour
 
             BonusType = BonusList[indexAleatoire];
             GetComponent<MeshFilter>().mesh = MeshBonus[indexAleatoire];*/
+        StartCoroutine(DelayDCD());
     }
 
     // Update is called once per frame
@@ -138,5 +139,10 @@ public class Bonus : MonoBehaviour
                 }
             }
         }
+    }
+    IEnumerator DelayDCD()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 }
