@@ -2748,7 +2748,7 @@ MonoBehaviour:
   TimeBeforeSpawnDeliveryMan: 1.5
   Bonus: {fileID: 7139378233375819388, guid: 4cdb545463c347a4a924485a0640893c, type: 3}
   Malus: {fileID: 7139378233375819388, guid: b2516185e4f7f0a4a990085ea7736e21, type: 3}
-  giletJaune: {fileID: 0}
+  giletJaune: {fileID: 2936414110503205232, guid: b516c1a8c998b2741b6d858d058f4d0b, type: 3}
   BarrieresList:
   - {fileID: 2198482855054461222, guid: 5893118112141e64d9059f5edfc9a3b2, type: 3}
   - {fileID: 3089792995745650784, guid: e714bbe9f6403ca4688e985579fc787f, type: 3}

@@ -89,7 +89,7 @@ public class Spawn : MonoBehaviour
 
             if (Random.Range(0, 5) == 0)
             {
-                switch (Random.Range(0, 3))
+                switch (Random.Range(2, 3))
                 {
                     case 0:
                         newDeliveryMan.GetComponent<DeliveryMan>().isNotKind = true;
@@ -102,17 +102,23 @@ public class Spawn : MonoBehaviour
                         ParticlesGiveABuff.transform.SetParent(newDeliveryMan.transform, true);
                         break;
                     case 2:
-                        GameObject newGiletJaune = Instantiate(giletJaune, SpawnPoint, Quaternion.Euler(90f, 0, 90f));
-                        GameManager.Instance.ListDeliveryMan.Add(newDeliveryMan);
-                        direction = new Vector3(-sides - newDeliveryMan.transform.position.x, 0, 0);
+                        if (Random.Range(0, 1f) < 0.5f)
+                        {
+                            sides = -sides;
+
+                        }
+                        SpawnPoint = new Vector3(sides, 0.25f, Random.Range(-3, -7));
+                        GameObject newGiletJaune = Instantiate(giletJaune, SpawnPoint, Quaternion.Euler(0f, -90, 0f));
+                        GameManager.Instance.ListDeliveryMan.Add(newGiletJaune);
+                        direction = new Vector3(-sides - newGiletJaune.transform.position.x, 0, 0);
                         if (SpawnPoint.x < 0)
                         {
-                            newDeliveryMan.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
-                            newDeliveryMan.transform.rotation = Quaternion.Euler(90f, 0, -90f);
+                            newGiletJaune.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0).normalized * newGiletJaune.GetComponent<DeliveryMan>().Speed;
+                            newGiletJaune.transform.rotation = Quaternion.Euler(0f, 90, 0f);
                         }
                         else
                         {
-                            newDeliveryMan.GetComponent<Rigidbody>().velocity = direction.normalized * newDeliveryMan.GetComponent<DeliveryMan>().Speed;
+                            newGiletJaune.GetComponent<Rigidbody>().velocity = direction.normalized * newGiletJaune.GetComponent<DeliveryMan>().Speed;
                         }
                         break;
                 }
