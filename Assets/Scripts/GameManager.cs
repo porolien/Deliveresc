@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI RemainingTime;
     public TextMeshProUGUI PointsText;
     public GameObject DefeatUI;
+    [SerializeField] private TextMeshProUGUI HighscoreUI;
 
     public float PointX2;
     public int Combos;
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    private float addTime = 2;
     public float timeMultiplator = 1;
 
     private float timeBeforeLast;
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
     {
         times = 100;
         Points = 0;
-        float score = PlayerPrefs.GetFloat("Highscore");
+       
     }
 
     // Update is called once per frame
@@ -127,7 +129,9 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Highscore", points);
         }
-        
+        HighscoreUI.text = "" + PlayerPrefs.GetFloat("Highscore");
+
+
     }
 
     void NewRound()
@@ -137,6 +141,7 @@ public class GameManager : MonoBehaviour
         {
             spawn.TimeBeforeSpawnDeliveryMan = 1;
             spawn.TimeBeforeSpawnBarrier = 6;
+            addTime = 1;
             AddBrand("UTerEats");
         }
         if (Round == 3)
@@ -166,6 +171,11 @@ public class GameManager : MonoBehaviour
 
             }
         }
+    }
+
+    public void AddTimes()
+    {
+         times = addTime;
     }
 
     public void CombosMultiplicator()

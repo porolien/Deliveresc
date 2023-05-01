@@ -1730,10 +1730,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
+  addTime: 2
+  LastSpeed: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   BrandName: UTerEats
   isNotKind: 0
   giveABuff: 0
+  hasBeThrowned: 0
+  StarsParticles: {fileID: 3562297104717670484, guid: e9ba0ec6086da104caa8a6216afc0cca, type: 3}
+  ExplosionParticles: {fileID: 3032556600280733039, guid: 389ab0332ae742345a18d4e1b8e2d557, type: 3}
 --- !u!95 &-4666084376699129063
 Animator:
   serializedVersion: 4

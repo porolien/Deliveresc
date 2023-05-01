@@ -5,12 +5,15 @@ using UnityEngine;
 public class DeliveryMan : MonoBehaviour
 {
     public float Speed;
+    public float addTime = 2;
     public Vector3 LastSpeed;
     public Vector3 direction;
     public string BrandName;
     public bool isNotKind;
     public bool giveABuff;
     public bool hasBeThrowned;
+    [SerializeField] private GameObject StarsParticles;
+    [SerializeField] private GameObject ExplosionParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +51,7 @@ public class DeliveryMan : MonoBehaviour
                     GameManager.Instance.Points = 5;
                 }
                 GameManager.Instance.Points = 1;
-                GameManager.Instance.times = 1;
+                GameManager.Instance.AddTimes();
                 GameManager.Instance.Combos += 1;
                 GameManager.Instance.CombosMultiplicator();
             }
@@ -92,6 +95,7 @@ public class DeliveryMan : MonoBehaviour
 
     private void Explosion()
     {
+        Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
         GameManager.Instance.ListDeliveryMan.Remove(gameObject);
         Destroy(gameObject);
     }
