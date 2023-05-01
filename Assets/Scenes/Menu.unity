@@ -691,7 +691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &518404371
 RectTransform:
   m_ObjectHideFlags: 0
@@ -945,7 +945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &665440067
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2566,6 +2566,7 @@ MonoBehaviour:
   RemainingTime: {fileID: 0}
   PointsText: {fileID: 0}
   DefeatUI: {fileID: 0}
+  HighscoreUI: {fileID: 0}
   PointX2: 0
   Combos: 0
   brandName: []
