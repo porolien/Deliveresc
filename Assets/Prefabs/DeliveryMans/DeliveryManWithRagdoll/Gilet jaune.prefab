@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: -4675045368895273881}
   m_Layer: 0
   m_Name: Gilet jaune
-  m_TagString: Untagged
+  m_TagString: DeliveryMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
